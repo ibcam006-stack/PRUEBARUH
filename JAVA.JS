@@ -222,7 +222,7 @@ const readButtons = document.querySelectorAll(".read-more");
 const articlesContent = [
     {
         title: "Liga Universitaria",
-        text: "Aquí puedes poner toda la información completa del artículo..."
+        text: "Liga"
     },
     {
         title: "Juguetón",
