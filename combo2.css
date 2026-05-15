@@ -471,17 +471,6 @@ section[id]{
     min-width: 300px;
 }
 
-.footer-left h2{
-    font-size: 4rem;
-
-    font-style: italic;
-    font-weight: 700;
-
-    line-height: 1.1;
-
-    margin-bottom: 25px;
-}
-
 .footer-right h2{
     font-size: 4rem;
 
@@ -501,6 +490,7 @@ section[id]{
 
     margin-bottom: 35px;
 }
+
 /* BUTTON */
 
 .footer-button{
@@ -878,176 +868,6 @@ section[id]{
 
     .partners-logos img{
         width: 70px;
-    }
-
-}
-
-/* =========================
-   MODAL
-========================= */
-
-.modal{
-    position: fixed;
-
-    top: 0;
-    left: 0;
-
-    width: 100%;
-    height: 100%;
-
-    background: rgba(0,0,0,0.65);
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    padding: 20px;
-
-    opacity: 0;
-    visibility: hidden;
-
-    transition: 0.3s ease;
-
-    z-index: 5000;
-}
-
-.modal.show{
-    opacity: 1;
-    visibility: visible;
-}
-
-/* =========================
-   MODAL CONTENT
-========================= */
-
-.modal-content{
-    width: 100%;
-    max-width: 900px;
-
-    max-height: 90vh;
-
-    background: white;
-
-    border-radius: 18px;
-
-    overflow: hidden;
-
-    position: relative;
-
-    animation: modalOpen 0.3s ease;
-}
-
-/* =========================
-   BODY
-========================= */
-
-.modal-body{
-    padding: 60px;
-
-    overflow-y: auto;
-
-    max-height: 90vh;
-}
-
-.modal-body h2{
-    font-size: 42px;
-
-    margin-bottom: 25px;
-
-    line-height: 1.2;
-}
-
-.modal-body p{
-    font-size: 18px;
-
-    line-height: 1.9;
-
-    color: #444;
-
-    white-space: pre-line;
-}
-
-/* =========================
-   CLOSE BUTTON
-========================= */
-
-.modal-close{
-    position: absolute;
-
-    top: 20px;
-    right: 20px;
-
-    width: 45px;
-    height: 45px;
-
-    border: none;
-
-    border-radius: 50%;
-
-    background: #111;
-    color: white;
-
-    font-size: 20px;
-
-    cursor: pointer;
-
-    transition: 0.3s;
-}
-
-.modal-close:hover{
-    background: #7c8575;
-}
-
-/* =========================
-   ANIMATION
-========================= */
-
-@keyframes modalOpen{
-
-    from{
-        transform: scale(0.9);
-        opacity: 0;
-    }
-
-    to{
-        transform: scale(1);
-        opacity: 1;
-    }
-
-}
-
-/* =========================
-   MOBILE
-========================= */
-
-@media(max-width:768px){
-
-    .modal-content{
-        max-height: 95vh;
-        border-radius: 14px;
-    }
-
-    .modal-body{
-        padding: 30px 22px;
-    }
-
-    .modal-body h2{
-        font-size: 28px;
-    }
-
-    .modal-body p{
-        font-size: 15px;
-        line-height: 1.8;
-    }
-
-    .modal-close{
-        width: 40px;
-        height: 40px;
-
-        font-size: 18px;
-
-        top: 15px;
-        right: 15px;
     }
 
 }

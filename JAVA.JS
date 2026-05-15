@@ -146,75 +146,77 @@ if (heroImage && window.innerWidth > 768) {
 // ===============================
 // FIREBASE CONFIG
 // ===============================
-
 const firebaseConfig = {
 
-    apiKey: "AIzaSyBHWHfkMK8I91rN--EY4Am7LcUDIbIs-lM",
+    apiKey: "AIzaSyD-ZuIk80pjmS0eGRvbda_n1k6ihjKbSXs",
 
-    authDomain: "ruhpixel-11703.firebaseapp.com",
+    authDomain: "revista-bfaa2.firebaseapp.com",
 
-    projectId: "ruhpixel-11703",
+    projectId: "revista-bfaa2",
 
-    storageBucket: "ruhpixel-11703.firebasestorage.app",
+    storageBucket: "revista-bfaa2.firebasestorage.app",
 
-    messagingSenderId: "343356805967",
+    messagingSenderId: "686451444613",
 
-    appId: "343356805967-e072b0kro6veivf07utoknjr9rgmaqjq.apps.googleusercontent.com",
+    appId: "1:686451444613:web:b4964e15160aa5747392ec",
 
-    measurementId: "G-BBHC5HB7R0"
+    measurementId: "G-9N8T4P05HV"
 
 };
 
 
 // ===============================
-// INICIALIZAR FIREBASE
+// FIREBASE INIT (SEGURO)
 // ===============================
 
-firebase.initializeApp(firebaseConfig);
-
-
-// ===============================
-// AUTH GOOGLE
-// ===============================
+if (!firebase.apps.length) {
+    firebase.initializeApp(firebaseConfig);
+}
 
 const auth = firebase.auth();
-
 const provider = new firebase.auth.GoogleAuthProvider();
 
+provider.setCustomParameters({
+    prompt: "select_account"
+});
+
 
 // ===============================
-// LOGIN GOOGLE
+// LOGIN GOOGLE CORREGIDO
 // ===============================
 
-const googleLogin = document.getElementById("google-login");
+document.addEventListener("DOMContentLoaded", () => {
 
-if (googleLogin) {
+    const googleLogin = document.getElementById("google-login");
 
-    googleLogin.addEventListener("click", () => {
+    if (!googleLogin) return;
 
-        auth.signInWithPopup(provider)
+    googleLogin.addEventListener("click", async () => {
 
-        .then((result) => {
+        try {
+
+            const result = await auth.signInWithPopup(provider);
 
             const user = result.user;
 
-            console.log(user);
+            console.log("LOGIN OK:", user);
 
             alert(`Bienvenido ${user.displayName}`);
 
-        })
+            // Cambiar botón
+            googleLogin.innerHTML = `Hola, ${user.displayName}`;
 
-        .catch((error) => {
+        } catch (error) {
 
-            console.log(error);
+            console.log("ERROR FIREBASE COMPLETO:", error);
 
-            alert("Error al iniciar sesión");
+            alert("Error: " + error.message);
 
-        });
+        }
 
     });
 
-}
+});
 
 
 // ===============================
@@ -281,3 +283,112 @@ cards.forEach(card => {
 window.addEventListener("scroll", revealCards);
 
 window.addEventListener("load", revealCards);
+
+// ===============================
+// MODAL ARTÍCULOS
+// ===============================
+
+const modal = document.getElementById("article-modal");
+
+const modalTitle = document.getElementById("modal-title");
+
+const modalText = document.getElementById("modal-text");
+
+const modalClose = document.getElementById("modal-close");
+
+
+// TODOS LOS BOTONES LEER MÁS
+
+const readButtons = document.querySelectorAll(".read-more");
+
+
+// CONTENIDO
+
+const articlesContent = [
+
+    {
+        title: "Liga Universitaria",
+
+        text: `Aquí puedes poner toda la información completa del artículo.
+        
+Puedes escribir muchísimo texto.
+
+El modal tendrá scroll automático y permitirá seguir leyendo sin romper el diseño.
+
+También puedes separar párrafos normalmente.`
+    },
+
+    {
+        title: "Juguetón",
+
+        text: `Texto completo de Juguetón...`
+    },
+
+    {
+        title: "Copa ESH",
+
+        text: `Texto completo de Copa ESH...`
+    },
+
+    {
+        title: "Primer Informe de Actividades",
+
+        text: `Texto completo del informe...`
+    },
+
+    {
+        title: "Carrera",
+
+        text: `Texto completo de la carrera...`
+    }
+
+];
+
+
+// ABRIR MODAL
+
+readButtons.forEach((button, index) => {
+
+    button.addEventListener("click", (e) => {
+
+        e.preventDefault();
+
+        modalTitle.textContent =
+            articlesContent[index].title;
+
+        modalText.textContent =
+            articlesContent[index].text;
+
+        modal.classList.add("show");
+
+        document.body.style.overflow = "hidden";
+
+    });
+
+});
+
+
+// CERRAR MODAL
+
+modalClose.addEventListener("click", () => {
+
+    modal.classList.remove("show");
+
+    document.body.style.overflow = "auto";
+
+});
+
+
+// CERRAR DANDO CLICK AFUERA
+
+modal.addEventListener("click", (e) => {
+
+    if(e.target === modal){
+
+        modal.classList.remove("show");
+
+        document.body.style.overflow = "auto";
+
+    }
+
+});
